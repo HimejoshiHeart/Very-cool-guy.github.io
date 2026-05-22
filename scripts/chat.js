@@ -5,6 +5,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const messages = document.getElementById("chat-messages");
 
   let open = false;
+  let chatResponses = [];
+
+  // Load responses from JSON file
+  fetch("./chatResponses.json")
+    .then(response => response.json())
+    .then(data => {
+      chatResponses = data;
+    })
+    .catch(error => {
+      console.error("Failed to load chat responses:", error);
+    });
 
   button.addEventListener("click", () => {
     open = !open;
@@ -24,10 +35,11 @@ document.addEventListener("DOMContentLoaded", () => {
     addMessage("Starting Live Chat...", "user");
 
     setTimeout(() => {
-      addMessage(
-        "All human representatives are currently unavailable. Please meow at your screen and try again in 2-3 minutes.",
-        "bot"
-      );
+      const randomResponse =
+        chatResponses[Math.floor(Math.random() * chatResponses.length)] ||
+        "No responses available.";
+
+      addMessage(randomResponse, "bot");
     }, 250);
   });
 });
