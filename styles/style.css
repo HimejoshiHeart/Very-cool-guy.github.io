@@ -29,10 +29,6 @@ header {
     background-size: 200%, 100%;
     animation:  moveGradient 5s linear infinite;
 
-    a{
-        margin-bottom:10px;
-    }
-
 }
 
 
@@ -49,6 +45,7 @@ header a {
     color: white;
     mix-blend-mode: difference;
     margin: 1%;
+    cursor: pointer;
 }
 
 
